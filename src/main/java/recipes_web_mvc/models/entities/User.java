@@ -3,6 +3,7 @@ package recipes_web_mvc.models.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Email
     @Column(nullable = false,unique = true)
     private String email;
 
@@ -80,5 +80,18 @@ public class User {
 
     public void setFavouriteRecipes(Set<Recipe> favouriteRecipes) {
         this.favouriteRecipes = favouriteRecipes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(addedRecipes, user.addedRecipes) && Objects.equals(favouriteRecipes, user.favouriteRecipes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, email, addedRecipes, favouriteRecipes);
     }
 }

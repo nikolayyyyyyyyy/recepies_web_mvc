@@ -1,6 +1,8 @@
 package recipes_web_mvc.models.entities;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "recipes")
 public class Recipe {
@@ -63,5 +65,18 @@ public class Recipe {
 
     public void setAddedBy(User addedBy) {
         this.addedBy = addedBy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Recipe recipe = (Recipe) o;
+        return id == recipe.id && Objects.equals(name, recipe.name) && Objects.equals(ingredients, recipe.ingredients) && Objects.equals(category, recipe.category) && Objects.equals(addedBy, recipe.addedBy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, ingredients, category, addedBy);
     }
 }

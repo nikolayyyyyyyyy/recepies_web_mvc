@@ -12,21 +12,48 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded">
-        <a class="nav-link text-primary active h5 text-stroke" href="/">Bon App-étit</a>
-        <a class="nav-link text-primary active h5 text-stroke" href="/">Add Recipe</a>
+        <a class="nav-link text-primary active h5 text-stroke"
+           th:href="@{/home}"
+           th:if="${@userSession.isLogged()}"
+        >
+            Bon App-étit
+        </a>
+
+        <a class="nav-link text-primary active h5 text-stroke"
+           th:href="@{/addRecipe}"
+           th:if="${@userSession.isLogged()}"
+        >
+            Add Recipe
+        </a>
 
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
                 <li class="nav-item col-md-4">
-                    <a class="nav-link text-primary active h5 text-stroke" href="/">Login</a>
+                    <a class="nav-link text-primary active h5 text-stroke"
+                       th:href="@{/login}"
+                       th:unless="${@userSession.isLogged()}"
+                    >
+                        Login
+                    </a>
                 </li>
 
                 <li class="nav-item col-md-4">
-                    <a class="nav-link text-primary active h5 text-stroke" href="/">Register</a>
+                    <a class="nav-link text-primary active h5 text-stroke"
+                       th:href="@{/register}"
+                       th:unless="${@userSession.isLogged()}"
+                    >
+                        Register
+                    </a>
                 </li>
 
                 <li class="nav-item col-md-4">
-                    <a class="nav-link text-primary active h5 text-stroke" href="/">Logout</a>
+                    <a class="nav-link text-primary active h5 text-stroke"
+                       th:href="@{/logout}"
+                       th:if="${@userSession.isLogged()}"
+                    >
+                        Logout
+                    </a>
+
                 </li>
             </ul>
         </div>
@@ -35,7 +62,7 @@
 <footer class="footer bg-transparent  py-2">
     <div class="container-fluid text-center">
         <div class="footer-background h5 text-primary text-stroke fixed-bottom">
-            &copy; Spring team 2023. All rights reserved.
+            &copy; Spring team 2025. All rights reserved.
         </div>
     </div>
 </footer>
